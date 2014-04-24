@@ -139,6 +139,16 @@ class Main extends Sprite {
 
 			var currentNode:Node = openList[0];
 
+			//cari node paling kecil f nya
+			var lowestFNode:Node = openList[0];
+			for (node in openList) {
+				if (node.f < lowestFNode.f) {
+					lowestFNode = node;
+				}
+			}
+
+			currentNode = lowestFNode;
+
 			//lakukan jika bukan end node
 			if (currentNode != endNode) {
 
