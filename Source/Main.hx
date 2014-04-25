@@ -13,9 +13,9 @@ class Main extends Sprite {
 
 	public var nodeArr:Array<Array<Int>> = [[0,0,0,0,0,0,0,0],
 	       					[0,0,0,0,1,0,0,0],
-						[0,0,2,0,1,0,0,0],
+						[0,0,2,0,1,0,3,0],
 						[0,0,0,0,1,0,0,0],
-						[0,0,0,0,0,0,3,0],
+						[0,0,0,0,0,0,0,0],
 						[0,0,0,0,0,0,0,0]
 						];
 	
@@ -234,10 +234,13 @@ class Main extends Sprite {
 
 								var neighbourNode:Node = nodeObjArr[rowNeighbour][colNeighbour];
 								//gak ada di closed list
-								if (closedList.indexOf(neighbourNode) == -1) {
-									if (neighbourNode.g < smallestNode.g) {
-										//trace("change way");
-										neighbourNode.parentNode = neighbourNode.parentNode;
+								if (closedList.indexOf(neighbourNode) == -1 &&
+								    openList.indexOf(neighbourNode) != -1) {
+									if (neighbourNode.g+neighbourNode.getTargetG(smallestNode.baris, smallestNode.kolom) < smallestNode.g) {
+
+										trace("change way");
+										//ini kok salah ya?
+										neighbourNode.parentNode = currentNode;
 
 										neighbourNode.updateG(neighbourNode.parentNode.baris, neighbourNode.parentNode.kolom, neighbourNode.parentNode.g); 
 										neighbourNode.updateH(endNode.baris, endNode.kolom);

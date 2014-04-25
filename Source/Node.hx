@@ -77,6 +77,48 @@ class Node extends Sprite {
 	}
 
 
+	public function getTargetG(parentBaris:Int, parentKolom:Int):Float{
+
+			//delta
+			var dBaris:Int = this.baris-parentBaris;
+			var dKolom:Int = this.kolom-parentKolom;
+			
+			var gTambah:Float = 0;
+			//cek posisi
+			//n
+			if(dBaris == -1 && dKolom == 0){
+				gTambah = G_LURUS;
+			//ne
+			}else if(dBaris == -1 && dKolom == 1){
+				gTambah= G_DIAGONAL;
+			//e
+			}else if(dBaris == 0 && dKolom == 1){
+				gTambah = G_LURUS;
+			//se
+			}else if(dBaris == 1 && dKolom == 1){
+				gTambah = G_DIAGONAL;
+			//s
+			}else if(dBaris == 1 && dKolom == 0){
+				gTambah = G_LURUS;
+			//sw
+			}else if(dBaris == 1 && dKolom == -1){
+				gTambah = G_DIAGONAL;
+			//w
+			}else if(dBaris == 0 && dKolom == -1){
+				gTambah = G_LURUS;
+			//nw
+			}else if(dBaris == -1 && dKolom == -1){
+				gTambah = G_DIAGONAL;
+			}
+			//g = parentG+gTambah;
+
+			//updateF();
+			return gTambah;
+
+
+	}
+
+
 	public function updateG(parentBaris:Int, parentKolom:Int, parentG:Float){
 
 
